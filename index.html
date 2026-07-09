@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monicah — Frontend & WordPress Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --paper: #F7F3EA;
+            --ink: #211F1A;
+            --ink-soft: #55524A;
+            --amber: #C97A2E;
+            --amber-deep: #9A5A1E;
+            --teal: #2C5A55;
+            --clay: #A6452E;
+            --line: #DBD3C2;
+            --card: #FCFAF4;
+            --maxw: 760px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--amber-deep);
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        header.hero {
+            padding: 96px 0 64px;
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+            color: var(--teal);
+            margin: 0 0 18px;
+        }
+
+        h1.name {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            font-size: clamp(42px, 8vw, 64px);
+            line-height: 1.02;
+            margin: 0 0 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .role-line {
+            font-size: 19px;
+            color: var(--ink-soft);
+            max-width: 520px;
+            margin: 0 0 30px;
+        }
+
+        .role-line strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 3px;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .btn.primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn.primary:hover {
+            background: var(--amber-deep);
+            border-color: var(--amber-deep);
+        }
+
+        .btn:not(.primary):hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .rule {
+            border: none;
+            border-top: 1px solid var(--line);
+            margin: 0;
+        }
+
+        section {
+            padding: 64px 0;
+        }
+
+        section.about {
+            padding-top: 56px;
+        }
+
+        h2.section-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            text-transform: lowercase;
+            letter-spacing: 0.02em;
+            color: var(--teal);
+            margin: 0 0 28px;
+        }
+
+        h2.section-title::before {
+            content: "~/";
+            color: var(--ink-soft);
+        }
+
+        .about p {
+            font-size: 17px;
+            max-width: 560px;
+            color: var(--ink);
+            margin: 0 0 16px;
+        }
+
+        .about p:last-child {
+            margin-bottom: 0;
+        }
+
+        .project {
+            padding: 36px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .project:first-of-type {
+            padding-top: 0;
+        }
+
+        .project:last-of-type {
+            border-bottom: none;
+        }
+
+        .project-path {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--amber-deep);
+            margin: 0 0 10px;
+        }
+
+        .project-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        h3.project-name {
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 26px;
+            margin: 0;
+        }
+
+        .project-role {
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--ink-soft);
+            white-space: nowrap;
+        }
+
+        .project-desc {
+            font-size: 16px;
+            color: var(--ink-soft);
+            max-width: 600px;
+            margin: 0 0 16px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--teal);
+            border: 1px solid var(--line);
+            padding: 4px 10px;
+            border-radius: 2px;
+            background: var(--card);
+        }
+
+        .visit {
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--ink);
+            border-bottom: 1px solid var(--amber);
+            padding-bottom: 1px;
+        }
+
+        .visit:hover {
+            color: var(--amber-deep);
+        }
+
+        .visit::after {
+            content: " ↗";
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px 20px;
+        }
+
+        .stack-group h4 {
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--ink-soft);
+            margin: 0 0 10px;
+            font-weight: 400;
+        }
+
+        .stack-group ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 15px;
+        }
+
+        .stack-group li {
+            padding: 4px 0;
+        }
+
+        footer.contact {
+            padding: 64px 0 100px;
+        }
+
+        footer.contact p {
+            font-size: 17px;
+            max-width: 520px;
+            color: var(--ink-soft);
+            margin: 0 0 26px;
+        }
+
+        .footnote {
+            margin-top: 70px;
+            font-size: 13px;
+            color: var(--ink-soft);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        @media (max-width:560px) {
+            header.hero {
+                padding: 64px 0 48px;
+            }
+
+            section {
+                padding: 48px 0;
+            }
+
+            .project-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <header class="hero">
+            <p class="eyebrow">frontend &amp; wordpress developer — nairobi, kenya</p>
+            <h1 class="name">Monicah</h1>
+            <p class="role-line">I build and style websites for small teams and founders — <strong>WordPress builds,
+                    Svelte front-ends, and the JavaScript that makes a design actually behave.</strong></p>
+            <div class="cta-row">
+                <a class="btn primary" href="#work">See the work</a>
+                <a class="btn" href="#contact">Get in touch</a>
+            </div>
+        </header>
+    </div>
+
+    <hr class="rule">
+
+    <div class="wrap">
+        <section class="about">
+            <h2 class="section-title">about</h2>
+            <p>I'm a frontend and WordPress developer based in Nairobi. I've worked inside a Svelte-focused dev studio,
+                run point on a nonprofit's website as their contract developer, and built campaign and marketing sites
+                end to end on my own.</p>
+            <p>What I care about most is the gap between a design file and a site that actually works the way it's
+                supposed to — that's usually where I spend the bulk of my time.</p>
+        </section>
+    </div>
+
+    <hr class="rule">
+
+    <div class="wrap">
+        <section id="work">
+            <h2 class="section-title">work</h2>
+
+            <div class="project">
+                <p class="project-path">work/okupter</p>
+                <div class="project-head">
+                    <h3 class="project-name">Okupter</h3>
+                    <span class="project-role">frontend developer</span>
+                </div>
+                <p class="project-desc">Worked as part of the team at Okupter, a Svelte and SvelteKit development
+                    studio, building and integrating client websites. My focus was Svelte integration — turning designs
+                    into working, interactive front-ends across a range of client projects.</p>
+                <div class="tags">
+                    <span class="tag">Svelte</span>
+                    <span class="tag">SvelteKit</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+                <a class="visit" href="https://okupter.com" target="_blank" rel="noopener">okupter.com</a>
+            </div>
+
+            <div class="project">
+                <p class="project-path">work/westerwelle-foundation</p>
+                <div class="project-head">
+                    <h3 class="project-name">Westerwelle Foundation</h3>
+                    <span class="project-role">contract developer</span>
+                </div>
+                <p class="project-desc">Contract frontend and WordPress developer for Westerwelle Foundation, which
+                    supports young entrepreneurs across Africa, Asia, and Latin America. Handled ongoing content updates
+                    and built out site features with custom JavaScript to match the outcomes the team needed.</p>
+                <div class="tags">
+                    <span class="tag">WordPress</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Content updates</span>
+                </div>
+                <a class="visit" href="https://westerwelle-foundation.com" target="_blank"
+                    rel="noopener">westerwelle-foundation.com</a>
+            </div>
+
+            <div class="project">
+                <p class="project-path">work/anita-adefuye</p>
+                <div class="project-head">
+                    <h3 class="project-name">Anita Adefuye</h3>
+                    <span class="project-role">sole developer</span>
+                </div>
+                <p class="project-desc">Built the full campaign website for Anita Adefuye, a Regina city council
+                    candidate, from the ground up — design, layout, and build handled entirely on my own.</p>
+                <div class="tags">
+                    <span class="tag">Full build</span>
+                    <span class="tag">Design</span>
+                    <span class="tag">HTML/CSS/JS</span>
+                </div>
+                <a class="visit" href="https://anitaadefuye.ca" target="_blank" rel="noopener">anitaadefuye.ca</a>
+            </div>
+
+            <div class="project">
+                <p class="project-path">work/get-french-classes</p>
+                <div class="project-head">
+                    <h3 class="project-name">Get French Classes</h3>
+                    <span class="project-role">designer</span>
+                </div>
+                <p class="project-desc">Created the design for Get French Classes, an online platform offering
+                    live-tutored French courses. Focused on a clean, conversion-friendly layout for a marketing-driven
+                    site.</p>
+                <div class="tags">
+                    <span class="tag">Design</span>
+                    <span class="tag">UI</span>
+                </div>
+                <a class="visit" href="https://getfrenchclasses.com" target="_blank"
+                    rel="noopener">getfrenchclasses.com</a>
+            </div>
+
+        </section>
+    </div>
+
+    <hr class="rule">
+
+    <div class="wrap">
+        <section class="stack">
+            <h2 class="section-title">stack</h2>
+            <div class="stack-grid">
+                <div class="stack-group">
+                    <h4>Build</h4>
+                    <ul>
+                        <li>WordPress (themes &amp; customization)</li>
+                        <li>Svelte / SvelteKit</li>
+                        <li>HTML, CSS, JavaScript</li>
+                    </ul>
+                </div>
+                <div class="stack-group">
+                    <h4>Craft</h4>
+                    <ul>
+                        <li>Responsive layout</li>
+                        <li>UI &amp; visual design</li>
+                        <li>Content management</li>
+                    </ul>
+                </div>
+                <div class="stack-group">
+                    <h4>Way of working</h4>
+                    <ul>
+                        <li>Direct client communication</li>
+                        <li>Comfortable in existing codebases</li>
+                        <li>Remote, async-friendly</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <hr class="rule">
+
+    <div class="wrap">
+        <footer class="contact" id="contact">
+            <h2 class="section-title">contact</h2>
+            <p>Have a site that needs building, fixing, or styling? I'd like to hear about it.</p>
+            <div class="cta-row">
+                <a class="btn primary" href="mailto:me@ajeso.dev">me@ajeso.dev</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
